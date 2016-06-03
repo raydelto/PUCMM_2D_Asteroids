@@ -54,7 +54,7 @@ namespace Engine
 		}
 
 		m_state = GameState::RUNNING;
-		CreateAsteroid(Asteroids::Asteroid::AsteroidSize::BIG, 1);
+		CreateAsteroid(Asteroids::Asteroid::AsteroidSize::BIG, 15);
 
 		SDL_Event event;
 		while (m_state == GameState::RUNNING)
@@ -225,11 +225,17 @@ namespace Engine
 			RespawnPlayer();
 			break;
 		case SDL_SCANCODE_TAB:
-			m_player->ChangeShip();
+			if(m_player)
+			{ 
+				m_player->ChangeShip();
+			}
 			break;
 		case SDL_SCANCODE_SPACE:
 			//
-			CreateBullet();
+			if (m_player)
+			{
+				CreateBullet();
+			}
 			break;
 		case SDL_SCANCODE_ESCAPE:
 			OnExit();
@@ -239,12 +245,7 @@ namespace Engine
 
 	void Game::OnUpdate()
 	{
-		if (up)
-			m_player->MoveUp();
-		if (left)
-			m_player->RotateLeft(DESIRED_FRAME_TIME);
-		if (right)
-			m_player->RotateRight(DESIRED_FRAME_TIME);
+		
 
 		// Updating the entities
 		//
@@ -257,6 +258,13 @@ namespace Engine
 
 		if(m_player)
 		{
+			if (up)
+				m_player->MoveUp();
+			if (left)
+				m_player->RotateLeft(DESIRED_FRAME_TIME);
+			if (right)
+				m_player->RotateRight(DESIRED_FRAME_TIME);
+
 			m_player->Update(DESIRED_FRAME_TIME, m_width, m_height);
 
 			// Checking collision between the entities
