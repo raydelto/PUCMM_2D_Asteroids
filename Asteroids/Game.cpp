@@ -33,6 +33,7 @@ namespace Engine
 		m_mainWindow = nullptr;
 		m_state = GameState::UNINITIALIZED;
 		m_player = new Asteroids::Player();
+
 		m_entities.push_back(m_player);
 		m_dimensions[0] = width;
 		m_dimensions[1] = height;
@@ -43,9 +44,9 @@ namespace Engine
 
 	Game::~Game()
 	{
+
 		if(m_player)
 			delete m_player;
-
 		CleanupSDL();
 	}
 
@@ -255,6 +256,7 @@ namespace Engine
 		case SDL_SCANCODE_ESCAPE:
 			OnExit();
 			break;
+
 		default:
 			//DO NOTHING
 			break;

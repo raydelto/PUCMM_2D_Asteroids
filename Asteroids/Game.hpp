@@ -64,7 +64,6 @@ namespace Engine
 		void RespawnPlayer					( );
 		void UpdateScore				( int delta );
 
-
 		/* =============================================================
 		 * MEMBERS
 		 * ============================================================= */
@@ -82,7 +81,6 @@ namespace Engine
 		std::list< Asteroids::Bullet* >		m_bullets;
 		std::list< Asteroids::Entity* >     m_entities;
 		Engine::TimeManager*				m_timer;
-
 	};
 }
 #endif /* GAME_HPP */
